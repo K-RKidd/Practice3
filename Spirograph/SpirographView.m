@@ -7,6 +7,7 @@
 //
 
 #import "SpirographView.h"
+#import "SpirographViewController.h"
 
 @implementation SpirographView
 
@@ -25,14 +26,29 @@
 // An empty implementation adversely affects performance during animation.
 
 - (void)drawRect:(CGRect)rect{
-
+    
     CGFloat x,y;
+    CGFloat t = 0.0;
     CGFloat R = 120;
-    CGFloat t =
+    CGFloat l = 0.01;
+    CGFloat k = 0.99;
     
+    UIBezierPath *bz = [[UIBezierPath alloc] init];
+    x = R *((1-k) * cos(t) + l*k * cos(1-k/k) *t);
+    y = R *((1-k) * sin(t) - l*k  * sin(1-k/k)*t);
+    CGPoint p = CGPointMake(x, y);
+    [bz moveToPoint:p];
     
-    x * t = R * ((1 - k) cos t + l*k cos 1-k/k *t);
-    y*t = R * ((1- k) sin t - l*k sin 1-k/k *t);
+    for (t=0; self.numberOfSteps; t= t+ self.stepSize){
+        
+        x = R *((1-k) * cos(t) + l*k * cos(1-k/k) *t);
+        y = R *((1-k) * sin(t) - l*k  * sin(1-k/k)*t);
+        p= CGPointMake(x, y);
+        [bz addLineToPoint:p];
+        
+    }
+    [bz stroke];
+    
 }
 
 @end

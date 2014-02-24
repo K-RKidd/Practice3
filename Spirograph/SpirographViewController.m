@@ -32,8 +32,24 @@
     NSString *kLabelText = [NSString stringWithFormat:@ "%f", kTotal];
     [kLabel setText: kLabelText];
     
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(fixKeyboard:) name:nil object:nil];
     
 }
+-(void) fixKeyboard: (NSNotification *)note{
+    NSNotification *show = [NSNotification notificationWithName:nil object:UIKeyboardDidShowNotification];
+    NSNotification *hide = [NSNotification notificationWithName:nil object:UIKeyboardDidHideNotification];
+    
+    if (show) {
+        CGSize keyboardSize = [[[note userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        CGRect newFrame = self.view.frame;
+        newFrame.origin.y -= keyboardSize.height;
+        self.view.frame = newFrame;
+    }else if (hide) {
+        
+    }
+}
+
 -(void) viewDidLayoutSubviews
 {
    
@@ -56,10 +72,9 @@
     
     [spv setNeedsDisplay];
     [hv setNeedsDisplay];
-
-    
-   
 }
+    
+
 
 
 - (IBAction)lSlider:(id)sender {
@@ -67,6 +82,8 @@
     [lSlider setMinimumValue:0.01];
     [lSlider setMaximumValue:0.99];
     total = lSlider.value;
+   
+    
     NSString *labelText = [NSString stringWithFormat:@ "%f", total];
     [lLabel setText: labelText];
 }
