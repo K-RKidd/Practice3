@@ -7,6 +7,8 @@
 //
 
 #import "SpirographViewController.h"
+#import "HarmonigraphView.h"
+#import "SpirographView.h"
 
 @interface SpirographViewController ()
 
@@ -14,10 +16,31 @@
 
 @implementation SpirographViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    static float total;
+    static float kTotal;
+    total = lSlider.value;
+    NSString *labelText = [NSString stringWithFormat:@ "%f", total];
+    [lLabel setText: labelText];
+    
+    kTotal = kSlider.value;
+    NSString *kLabelText = [NSString stringWithFormat:@ "%f", kTotal];
+    [kLabel setText: kLabelText];
+    
+    
+}
+-(void) viewDidLayoutSubviews
+{
+   
+    [sv setPagingEnabled:YES];
+    sv.contentSize = CGSizeMake(560, 290);
+  
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,4 +49,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)redraw:(id)sender {
+    
+    SpirographView *spv;
+    HarmonigraphView *hv;
+    
+    [spv setNeedsDisplay];
+    [hv setNeedsDisplay];
+
+    
+   
+}
+
+
+- (IBAction)lSlider:(id)sender {
+    static float total;
+    [lSlider setMinimumValue:0.01];
+    [lSlider setMaximumValue:0.99];
+    total = lSlider.value;
+    NSString *labelText = [NSString stringWithFormat:@ "%f", total];
+    [lLabel setText: labelText];
+}
+
+- (IBAction)kSlider:(id)sender {
+    static float kTotal;
+    [kSlider setMinimumValue:0.01];
+    [kSlider setMaximumValue:0.99];
+    kTotal = kSlider.value;
+    NSString *kLabelText = [NSString stringWithFormat:@ "%f", kTotal];
+    [kLabel setText: kLabelText];
+}
 @end
