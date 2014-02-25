@@ -7,22 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SpirographView.h"
+#import "HarmonigraphView.h"
 
-@interface SpirographViewController : UIViewController
-{
-    __weak IBOutlet UILabel *lLabel;
- 
-    __weak IBOutlet UILabel *kLabel;
-    
-    __weak IBOutlet UISlider *lSlider;
-    __weak IBOutlet UISlider *kSlider;
-    
-    __weak IBOutlet UIScrollView *sv;
-}
+@interface SpirographViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet SpirographView *spirographView;
+@property (weak, nonatomic) IBOutlet HarmonigraphView *harmonigraphView;
 
+@property (weak, nonatomic) IBOutlet UILabel *lLabel;
+@property (weak, nonatomic) IBOutlet UILabel *kLabel;
+@property (weak, nonatomic) IBOutlet UITextField *numberOfSteps;
+@property (weak, nonatomic) IBOutlet UITextField *stepSize;
+@property (weak, nonatomic) IBOutlet UISlider *lSlider;
+@property (weak, nonatomic) IBOutlet UISlider *kSlider;
+@property (weak, nonatomic) IBOutlet UIScrollView *sv;
+
+- (IBAction)kChange:(id)sender;
+
+- (IBAction)lChange:(id)sender;
 - (IBAction)redraw:(id)sender;
-- (IBAction)lSlider:(id)sender;
-- (IBAction)kSlider:(id)sender;
+
 
 
 

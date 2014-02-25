@@ -12,6 +12,7 @@
 
 @interface SpirographViewController ()
 
+
 @end
 
 @implementation SpirographViewController
@@ -22,40 +23,43 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    static float total;
-    static float kTotal;
-    total = lSlider.value;
-    NSString *labelText = [NSString stringWithFormat:@ "%f", total];
-    [lLabel setText: labelText];
-    
-    kTotal = kSlider.value;
-    NSString *kLabelText = [NSString stringWithFormat:@ "%f", kTotal];
-    [kLabel setText: kLabelText];
+    self.spirographView.l = 0.3;
+    self.spirographView.k = 0.7;
+    self.spirographView.numberOfSteps = 2000;
+    self.spirographView.stepSize = 0.2;
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(fixKeyboard:) name:nil object:nil];
+    [nc addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     
+    [nc addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
 }
--(void) fixKeyboard: (NSNotification *)note{
-    NSNotification *show = [NSNotification notificationWithName:nil object:UIKeyboardDidShowNotification];
-    NSNotification *hide = [NSNotification notificationWithName:nil object:UIKeyboardDidHideNotification];
-    
-    if (show) {
-        CGSize keyboardSize = [[[note userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+-(void) keyboardUp: (NSNotification *) note{
+    CGSize keyboardSize =[[[note userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
         CGRect newFrame = self.view.frame;
         newFrame.origin.y -= keyboardSize.height;
         self.view.frame = newFrame;
-    }else if (hide) {
-        
-    }
+    
+}
+-(void) keyboardDown: (NSNotification *)note {
+    CGSize keyboardSize = [[[note userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGRect newFrame = self.view.frame;
+    newFrame.origin.y += keyboardSize.height;
+    self.view.frame= newFrame;
+    
+    
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) viewDidLayoutSubviews
 {
    
-    [sv setPagingEnabled:YES];
-    sv.contentSize = CGSizeMake(560, 290);
-  
+    [self.sv setPagingEnabled:YES];
+     self.sv.contentSize = CGSizeMake(560, 290);
+    
+
 
 }
 
@@ -65,35 +69,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)kChange:(id)sender {
+    self.kSlider.minimumValue = 0.01;
+    self.kSlider.maximumValue = 0.99;
+    self.spirographView.k = self.kSlider.value;
+    [self.spirographView setNeedsDisplay];
+    
+    
+}
+
+- (IBAction)lChange:(id)sender {
+    self.lSlider.minimumValue = 0.01;
+    self.lSlider.maximumValue = 0.99;
+    self.spirographView.l = self.lSlider.value;
+    [self.spirographView setNeedsDisplay];
+    
+}
+
 - (IBAction)redraw:(id)sender {
+    int kIntVal = self.kSlider.value;
+    self.spirographView.k = kIntVal;
+    int lIntVal = self.lSlider.value;
+    self.spirographView.l = lIntVal;
+    self.spirographView.numberOfSteps = [self.numberOfSteps.text intValue];
+    self.spirographView.stepSize = [self.stepSize.text intValue];
+    [self.spirographView setNeedsDisplay];
     
-    SpirographView *spv;
-    HarmonigraphView *hv;
     
-    [spv setNeedsDisplay];
-    [hv setNeedsDisplay];
+    
 }
     
 
-
-
-- (IBAction)lSlider:(id)sender {
-    static float total;
-    [lSlider setMinimumValue:0.01];
-    [lSlider setMaximumValue:0.99];
-    total = lSlider.value;
-   
-    
-    NSString *labelText = [NSString stringWithFormat:@ "%f", total];
-    [lLabel setText: labelText];
-}
-
-- (IBAction)kSlider:(id)sender {
-    static float kTotal;
-    [kSlider setMinimumValue:0.01];
-    [kSlider setMaximumValue:0.99];
-    kTotal = kSlider.value;
-    NSString *kLabelText = [NSString stringWithFormat:@ "%f", kTotal];
-    [kLabel setText: kLabelText];
-}
 @end
