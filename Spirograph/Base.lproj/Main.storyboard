@@ -97,7 +97,6 @@
                     </view>
                     <connections>
                         <outlet property="harmonigraphView" destination="sCe-Cd-5Q1" id="pay-a6-dg3"/>
-                        <outlet property="kChange" destination="kh9-bI-dsS" id="Rvv-zB-KAj"/>
                         <outlet property="kLabel" destination="RQX-5E-XYj" id="HOl-h0-GfL"/>
                         <outlet property="kSlider" destination="m8B-KF-Z63" id="K6b-nm-JBk"/>
                         <outlet property="lLabel" destination="gvX-1B-4gC" id="Q7z-g3-75m"/>
