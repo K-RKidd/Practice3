@@ -25,6 +25,7 @@
 - (IBAction)kChange:(id)sender;
 
 - (IBAction)lChange:(id)sender;
+
 - (IBAction)redraw:(id)sender;
 
 

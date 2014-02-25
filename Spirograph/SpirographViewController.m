@@ -28,6 +28,11 @@
     self.spirographView.numberOfSteps = 2000;
     self.spirographView.stepSize = 0.2;
     
+    self.kSlider.minimumValue = 0.01;
+    self.kSlider.maximumValue = 0.99;
+    self.lSlider.minimumValue = 0.01;
+    self.lSlider.maximumValue = 0.99;
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     
@@ -71,17 +76,14 @@
 
 
 - (IBAction)kChange:(id)sender {
-    self.kSlider.minimumValue = 0.01;
-    self.kSlider.maximumValue = 0.99;
     self.spirographView.k = self.kSlider.value;
     [self.spirographView setNeedsDisplay];
     
     
 }
 
+
 - (IBAction)lChange:(id)sender {
-    self.lSlider.minimumValue = 0.01;
-    self.lSlider.maximumValue = 0.99;
     self.spirographView.l = self.lSlider.value;
     [self.spirographView setNeedsDisplay];
     
