@@ -11,11 +11,10 @@
 #import "HarmonigraphView.h"
 
 @interface SpirographViewController : UIViewController <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet SpirographView *spirographView;
 @property (weak, nonatomic) IBOutlet HarmonigraphView *harmonigraphView;
 
-@property (weak, nonatomic) IBOutlet UILabel *lLabel;
-@property (weak, nonatomic) IBOutlet UILabel *kLabel;
 @property (weak, nonatomic) IBOutlet UITextField *numberOfSteps;
 @property (weak, nonatomic) IBOutlet UITextField *stepSize;
 @property (weak, nonatomic) IBOutlet UISlider *lSlider;

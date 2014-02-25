@@ -39,9 +39,9 @@
     CGPoint p = CGPointMake(x, y);
     [bz moveToPoint:p];
     
-    for (t=0; self.stepSize * self.numberOfSteps; t= t+ self.stepSize){
-        x = 140+ R *((1-k) * cos(t) + l*k * cos(1-k/k) *t);
-        y = 140+ R *((1-k) * sin(t) - l*k  * sin(1-k/k)*t);
+    for (t=0; t < self.stepSize * self.numberOfSteps; t= t+ self.stepSize){
+        x = 140+ R *((1-k) * cos(t) + l*k * cos(((1-k)/k) *t));
+        y = 140+ R *((1-k) * sin(t) - l*k * sin(((1-k)/k)*t));
         p= CGPointMake(x, y);
         [bz addLineToPoint:p];
         

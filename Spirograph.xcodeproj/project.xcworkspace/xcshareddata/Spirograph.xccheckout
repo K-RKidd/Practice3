@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>246D7631-02FE-424A-9B4F-4133AF5039FF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Spirograph</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>38770C26-CEB8-44A8-99A8-FE23DF55ADFD</key>
+		<string>https://github.com/K-RKidd/Spirograph.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Spirograph.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>38770C26-CEB8-44A8-99A8-FE23DF55ADFD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/K-RKidd/Spirograph.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>38770C26-CEB8-44A8-99A8-FE23DF55ADFD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>38770C26-CEB8-44A8-99A8-FE23DF55ADFD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Spirograph</string>
+		</dict>
+	</array>
+</dict>
+</plist>

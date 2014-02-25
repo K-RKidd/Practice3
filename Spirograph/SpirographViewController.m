@@ -25,7 +25,7 @@
     
     self.spirographView.l = 0.3;
     self.spirographView.k = 0.7;
-    self.spirographView.numberOfSteps = 2000;
+    self.spirographView.numberOfSteps = 200;
     self.spirographView.stepSize = 0.2;
     
     self.kSlider.minimumValue = 0.01;
@@ -36,7 +36,8 @@
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     
-    [nc addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
+     [nc addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
+    
 }
 -(void) keyboardUp: (NSNotification *) note{
     CGSize keyboardSize =[[[note userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
@@ -51,11 +52,16 @@
     newFrame.origin.y += keyboardSize.height;
     self.view.frame= newFrame;
     
+   
+    
     
 }
--(void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+
+-(BOOL) textFieldShouldReturn:(UITextField *) textField {
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void) viewDidLayoutSubviews
@@ -95,8 +101,9 @@
     int lIntVal = self.lSlider.value;
     self.spirographView.l = lIntVal;
     self.spirographView.numberOfSteps = [self.numberOfSteps.text intValue];
-    self.spirographView.stepSize = [self.stepSize.text intValue];
+    self.spirographView.stepSize = [self.stepSize.text floatValue];
     [self.spirographView setNeedsDisplay];
+    [self.harmonigraphView setNeedsDisplay];
     
     
     
