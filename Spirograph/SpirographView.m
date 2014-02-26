@@ -34,8 +34,8 @@
     CGFloat k = self.k;
     
     UIBezierPath *bz = [[UIBezierPath alloc] init];
-    x = 140+ R *((1-k) * cos(t) + l*k * cos(1-k/k) *t);
-    y = 140+ R *((1-k) * sin(t) - l*k  * sin(1-k/k)*t);
+    x = 140+ R *((1-k) * cos(t) + l*k * cos(((1-k)/k) *t));
+    y = 140+ R *((1-k) * sin(t) - l*k * sin(((1-k)/k)*t));
     CGPoint p = CGPointMake(x, y);
     [bz moveToPoint:p];
     
@@ -44,8 +44,8 @@
         y = 140+ R *((1-k) * sin(t) - l*k * sin(((1-k)/k)*t));
         p= CGPointMake(x, y);
         [bz addLineToPoint:p];
-        
     }
+    
     [bz stroke];
     
 }

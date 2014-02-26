@@ -96,10 +96,10 @@
 }
 
 - (IBAction)redraw:(id)sender {
-    int kIntVal = self.kSlider.value;
-    self.spirographView.k = kIntVal;
-    int lIntVal = self.lSlider.value;
-    self.spirographView.l = lIntVal;
+    int i = self.kSlider.value *100;
+    self.spirographView.k = i/100.0;
+    i = self.lSlider.value *100;
+    self.spirographView.l = i/100.0;
     self.spirographView.numberOfSteps = [self.numberOfSteps.text intValue];
     self.spirographView.stepSize = [self.stepSize.text floatValue];
     [self.spirographView setNeedsDisplay];
